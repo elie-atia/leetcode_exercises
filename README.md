@@ -1,5 +1,4 @@
 # leetcode_exercises
-A list of all the questions from interview with my solution codes (in C)
 
 #How to run:
 1. Install the C/C++ extension for Visual Studio Code.
