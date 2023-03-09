@@ -3,32 +3,18 @@
 #include <stdlib.h> 
 #include <string.h>
 
-int symbolToInt(char c) {
-    if (c == 'I') {
-        return 1;
-    }
-    else if (c == 'V') {
-        return 5;
-    }
-    else if (c == 'X') {
-        return 10;
-    }
-    else if (c == 'L') {
-        return 50;
-    }
-    else if (c == 'C') {
-        return 100;
-    }
-    else if (c == 'D') {
-        return 500;
-    }
-    else {
-        return 1000;
-    }
-}
-
 int romanToInt(char* s) {
+       int t['X' + 1] = {
+        ['I'] = 1,
+        ['V'] = 5,
+        ['X'] = 10,
+        ['L'] = 50,
+        ['C'] = 100,
+        ['D'] = 500,
+        ['M'] = 1000,
+    };
     int length = strlen(s);
+
     bool passToNextSymbol = false;  //true if we previously added this symbol with the previous symbol
                                     //because it was a special pattern (IV, IX, ...)
     int number = 0;
@@ -38,7 +24,7 @@ int romanToInt(char* s) {
             continue;
         }
         if (i == length - 1) {
-            number += symbolToInt(s[i]);
+            number += t[s[i]];
             continue;
         }
         passToNextSymbol = true;
@@ -61,7 +47,7 @@ int romanToInt(char* s) {
             number += 900;
         }
         else {
-            number += symbolToInt(s[i]);
+            number += t[s[i]];
             passToNextSymbol = false;
         }
     }
@@ -70,10 +56,9 @@ int romanToInt(char* s) {
 
 
 
-
 int main()
 {
-    int number = romanToInt("VI");
+    int number = romanToInt("IM");
     printf("%d", number);
    
     return 0;
