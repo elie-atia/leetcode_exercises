@@ -1,4 +1,3 @@
-# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -16,23 +15,37 @@ class Solution:
         carry = 0
         pow = 10
         temp = output
-        while(l1):
-            sum = (l1.val + l2.val) + carry
-            val = (sum % 10)
+        while(l1 or l2 or carry):
+            # print(l2.val)
+            sum = 0
+            if(l1):
+                sum += l1.val
+                l1 = l1.next
+            if(l2):
+                sum += l2.val
+                l2 = l2.next
+            # print(sum % 10)
+            sum += carry 
+            # print(val)
+            val = sum % 10
             temp.val = val
-            if (sum > 10):
+            if (sum >= 10):
                 carry = 1
-            l1 = l1.next
-            l2 = l2.next
-            temp.next = ListNode(0)
+            else:
+                carry = 0
+            if(l1 or l2 or carry):
+                temp.next = ListNode(0)
+                temp = temp.next
 
         return output
+
 
 
 
 s = Solution()
 l1 = ListNode(2,ListNode(4,ListNode(3)))
 l2 = ListNode(5,ListNode(6,ListNode(4)))
+# l1.printListNode()
 
 sum = s.addTwoNumbers(l1,l2)
 sum.printListNode()
