@@ -13,10 +13,8 @@ class Solution:
     def addTwoNumbers(self, l1:ListNode, l2:ListNode) -> ListNode:
         output = ListNode(0)
         carry = 0
-        pow = 10
         temp = output
         while(l1 or l2 or carry):
-            # print(l2.val)
             sum = 0
             if(l1):
                 sum += l1.val
@@ -24,9 +22,7 @@ class Solution:
             if(l2):
                 sum += l2.val
                 l2 = l2.next
-            # print(sum % 10)
             sum += carry 
-            # print(val)
             val = sum % 10
             temp.val = val
             if (sum >= 10):
